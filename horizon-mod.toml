@@ -1,6 +1,6 @@
 id = "nightvision"
 name = "NightVision"
-version = "1.0.0"
+version = "1.1.0"
 description = "Gamma boost and night vision, client side: single player and servers."
 authors = ["Dasko2"]
 license = "MIT"
@@ -10,7 +10,7 @@ capabilities = ["registries"]
 
 [native]
 game = "26.3"
-horizon = "f037744a79f9982c47876f49c5a3067279f88706"
+horizon = "ae632edf48f6cae3ba52a5c81523ec712488c9cc"
 mixins = "e59da9094f0c2fdda6c627fe9eff22dec6a906f0"
 
 # Each tick: read the two keys and the settings.

@@ -21,7 +21,7 @@ Le curseur « Vision nocturne » règle la force. Pas de touches H/N avec cette 
 
 ## Installation du mod
 
-1. Il faut une instance Horizon sur le build `f037744a79f9982c47876f49c5a3067279f88706`
+1. Il faut une instance Horizon sur le build `ae632edf48f6cae3ba52a5c81523ec712488c9cc`
    (le mod utilise des mixins : il ne se compile que sur ce build).
 2. Dans le launcher : page Mods → **Add from GitHub** → l'URL de ce dépôt
    (accepter l'avertissement sur les mods natifs), puis **Build**.
