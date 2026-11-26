@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          path: mod
+
+      - name: Lire le build Horizon visé
+        id: pin
+        run: echo "sha=$(sed -n 's/^horizon = "\([0-9a-f]\{40\}\)"/\1/p' mod/horizon-mod.toml)" >> "$GITHUB_OUTPUT"
+
+      - uses: actions/checkout@v4
+        with:
+          repository: arismoko/horizon
+          ref: ${{ steps.pin.outputs.sha }}
+          path: horizon
+
+      - name: Dépendances système
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends libasound2-dev libudev-dev
+
+      - name: Rust
+        run: rustup toolchain install stable --profile minimal && rustup default stable
+
+      - uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cargo/registry
+            horizon/target
+          key: horizon-${{ steps.pin.outputs.sha }}-${{ hashFiles('mod/Cargo.toml') }}
+
+      - name: Compiler le mod contre Horizon
+        run: mod/ci/verifier.sh horizon
+
+      - name: Empaqueter nightvision.hmod
+        working-directory: mod
+        run: zip -r ../nightvision.hmod horizon-mod.toml Cargo.toml src assets
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nightvision-hmod
+          path: nightvision.hmod
+          if-no-files-found: error
