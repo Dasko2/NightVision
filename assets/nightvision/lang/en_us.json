@@ -1,0 +1,13 @@
+{
+  "nightvision.setting.gamma": "Gamma boost",
+  "nightvision.setting.level": "Gamma level",
+  "nightvision.setting.night_vision": "Night vision",
+  "nightvision.level.200": "200%",
+  "nightvision.level.500": "500%",
+  "nightvision.level.1000": "1000%",
+  "nightvision.level.1500": "1500%",
+  "nightvision.level.3000": "3000%",
+  "nightvision.key.gamma": "Toggle gamma boost",
+  "nightvision.key.night_vision": "Toggle night vision",
+  "nightvision.category": "NightVision"
+}

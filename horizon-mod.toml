@@ -1,0 +1,44 @@
+id = "nightvision"
+name = "NightVision"
+version = "1.0.0"
+description = "Gamma boost and night vision, client side: single player and servers."
+authors = ["Dasko2"]
+license = "MIT"
+api = "0.2"
+side = "client"
+capabilities = ["registries"]
+
+[native]
+game = "26.3"
+horizon = "f037744a79f9982c47876f49c5a3067279f88706"
+mixins = "e59da9094f0c2fdda6c627fe9eff22dec6a906f0"
+
+# Each tick: read the two keys and the settings.
+[[native.mixin]]
+id = "tick"
+target = "horizon_client::game::native_hooks::client_tick_pre::Game<'_>::native_client_tick_pre"
+kind = "HEAD"
+helper = "src/mixins/tick.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+]
+
+# Each frame, before it is drawn: the renderer's gamma.
+[[native.mixin]]
+id = "frame"
+target = "horizon_client::game::Game<'_>::render_and_flip"
+kind = "HEAD"
+helper = "src/mixins/frame.rs"
+bindings = [
+  { name = "game", ty = "&mut crate::game::Game<'_>", value = "&mut *self" },
+]
+
+# The night vision strength the lightmap is drawn with. No effect is given to the player.
+[[native.mixin]]
+id = "night_vision"
+target = "horizon_client::game::sculk::Game<'_>::night_vision_intensity"
+kind = "RETURN"
+helper = "src/mixins/night_vision.rs"
+bindings = [
+  { name = "value", ty = "f32", value = "$value" },
+]
