@@ -1,0 +1,21 @@
+schema = 1
+id = "nightvision"
+name = "NightVision"
+version = "1.0.0"
+api = "0.2"
+description = "Vision nocturne et gamma, sans dependre d'un build du jeu."
+
+[material]
+file = "material.wgsl"
+
+[entity]
+file = "entity.wgsl"
+
+[[options]]
+id = "brightness"
+name = "Vision nocturne"
+type = "float"
+default = 1.0
+min = 0.0
+max = 1.0
+step = 0.05

@@ -13,7 +13,13 @@ Tout est côté client : rien n'est envoyé au serveur et le curseur de luminosi
 > Certains serveurs interdisent ce genre de mod. Vérifie leurs règles avant de t'en servir.
 > Horizon bloque d'ailleurs son propre « fullbright » sur les serveurs des autres.
 
-## Installation
+## Autre build d'Horizon : le pack de shaders
+
+`NightVision.hshader` (sources dans `shaderpack/`) ne dépend pas d'un build du jeu et n'a rien à compiler.
+Le copier dans `shaderpacks/` (à côté de `options.txt`), puis Options > Options graphiques > Shaders > Shader Packs.
+Le curseur « Vision nocturne » règle la force. Pas de touches H/N avec cette version.
+
+## Installation du mod
 
 1. Il faut une instance Horizon sur le build `f037744a79f9982c47876f49c5a3067279f88706`
    (le mod utilise des mixins : il ne se compile que sur ce build).
